@@ -1,0 +1,7 @@
+#Creating Service Account
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jenkins
+  namespace: webapps
