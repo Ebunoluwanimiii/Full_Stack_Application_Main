@@ -52,6 +52,13 @@ resource "aws_route_table_association" "a" {
 resource "aws_security_group" "ekscluster_cluster_sg" {
   vpc_id = aws_vpc.ekscluster_vpc.id
 
+  ingress {
+      from_port   = 0
+      to_port     = 0
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
   egress {
     from_port   = 0
     to_port     = 0
