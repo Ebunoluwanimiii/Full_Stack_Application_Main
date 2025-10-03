@@ -1,5 +1,3 @@
-# Bind the role to the service account
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -10,6 +8,6 @@ roleRef:
   kind: Role
   name: app-role
 subjects:
-- namespace: webapps
-  kind: ServiceAccount
-  name: jenkins
+  - kind: ServiceAccount
+    name: jenkins
+    namespace: webapps
