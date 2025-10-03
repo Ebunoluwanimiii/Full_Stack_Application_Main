@@ -1,7 +1,9 @@
-#Creating Service Account
-
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: jenkins
   namespace: webapps
+labels:
+  app: jenkins
+# annotations:
+  #eks.amazonaws.com/role-arn: arn:aws:iam::<your-account-id>:role/<jenkins-role-name>  # Optional: for IAM roles for service accounts (IRSA)
