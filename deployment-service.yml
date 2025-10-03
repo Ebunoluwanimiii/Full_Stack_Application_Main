@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: bloggingapp-deployment
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: bloggingapp
-  replicas: 2
   template:
     metadata:
       labels:
@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: bloggingapp
-          image: ebunoluwanimi/bloggingapp:latest:latest # Updated image to private DockerHub image
+          image: ebunoluwanimi/bloggingapp:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
       imagePullSecrets:
-        - name: regcred # Reference to the Docker registry secret
+        - name: regcred
 ---
 apiVersion: v1
 kind: Service
@@ -29,7 +29,28 @@ spec:
   selector:
     app: bloggingapp
   ports:
-    - protocol: "TCP"
+    - protocol: TCP
       port: 80
-      targetPort: 8080 
-  type: LoadBalancer
+      targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bloggingapp-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bloggingapp-ssvc
+                port:
+                  number: 80
