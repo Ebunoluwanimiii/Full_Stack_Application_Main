@@ -12,6 +12,9 @@ spec:
       labels:
         app: bloggingapp
     spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+    spec:
       containers:
         - name: bloggingapp
           image: ebunoluwanimi/bloggingapp:latest
