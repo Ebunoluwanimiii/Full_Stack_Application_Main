@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: bloggingapp
-          image: nginx:latest
+          image: ebunoluwanimi/bloggingapp:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
