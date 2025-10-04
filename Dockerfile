@@ -6,6 +6,10 @@ ENV APP_HOME /usr/src/app
 
 COPY target/*.jar $APP_HOME/app.jar
 
+COPY entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+
 WORKDIR $APP_HOME
 
 CMD ["java", "-jar", "app.jar", "node", "app.js", "--host=0.0.0.0", "--port=8080"]
