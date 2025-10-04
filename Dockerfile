@@ -1,3 +1,5 @@
+FROM scratch
+
 # Base image setup
 ADD alpine-minirootfs-3.22.1-x86_64.tar.gz / # buildkit
 
