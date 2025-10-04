@@ -59,4 +59,14 @@ public class SecurityConfig {
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
 
     }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .antMatchers("/health").permitAll()
+                .anyRequest().authenticated()
+            .and()
+            .formLogin();
+    }
 }
