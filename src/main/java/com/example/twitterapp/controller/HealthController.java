@@ -1,4 +1,4 @@
-package com.yourcompany.yourapp; // ← match your actual package name
+package com.example.twitterapp.controller; // ← match your actual package name
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
