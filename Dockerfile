@@ -8,4 +8,4 @@ COPY target/*.jar $APP_HOME/app.jar
 
 WORKDIR $APP_HOME
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar", "node", "app.js", "--host=0.0.0.0", "--port=8080"]
