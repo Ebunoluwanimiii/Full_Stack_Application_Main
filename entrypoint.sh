@@ -1,4 +1,4 @@
 #!/bin/sh
 export HOST=0.0.0.0
 export PORT=8080
-exec your-app-binary --host=$HOST --port=$PORT
+exec java -jar /app/app.jar --server.address=$HOST --server.port=$PORT
